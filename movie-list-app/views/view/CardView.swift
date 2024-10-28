@@ -23,6 +23,7 @@ struct CardView: View {
                 Text("(2021)")
                     .font(.system(size: 14,weight: .bold))
                     .foregroundStyle(Color.white)
+                RatingView(rating: 3.8, fromMovieDetail: false)
                 Text("A labourer rises through the ranks of a red sandalwood smuggling syndicate, making some powerful enemies in the process.")
                     .lineLimit(3)
                     .truncationMode(.tail)

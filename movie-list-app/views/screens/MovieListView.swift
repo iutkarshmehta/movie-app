@@ -16,7 +16,10 @@ struct MovieListView: View {
                 ScrollView(.horizontal,showsIndicators: false){
                     HStack(spacing: 16){
                         ForEach(movieType,id: \.self){ type in
-                            MovieStatusButton(buttonTitle: type.description)
+                            MovieStatusButton(
+                                buttonTitle: type.description,
+                                isButttonClicked: false
+                            )
                         }
                     }
                 }

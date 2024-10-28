@@ -9,11 +9,12 @@ import SwiftUI
 
 struct MovieStatusButton: View {
     let buttonTitle: String
+    @State var isButttonClicked: Bool = false
     var body: some View {
         ZStack{
-            Button(buttonTitle, action: {})
+            Button(buttonTitle, action: {isButttonClicked = isButttonClicked ? false : true})
                 .buttonStyle(.borderedProminent)
-                .tint(.gray)
+                .tint(isButttonClicked ? .green : .gray)
                 .clipShape(Capsule())
                 .fontWeight(.bold)
         }
@@ -21,5 +22,5 @@ struct MovieStatusButton: View {
 }
 
 #Preview {
-    MovieStatusButton(buttonTitle: "")
+    MovieStatusButton(buttonTitle: "",isButttonClicked: false)
 }
