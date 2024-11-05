@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct MovieHomepage: View {
+    @StateObject var popularMovieViewModel = PopularMovieViewModel()
+    
     init() {
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
@@ -18,26 +20,30 @@ struct MovieHomepage: View {
     
     var body: some View {
         TabView {
-            MovieListView()
-                .tabItem {
-                    Image(systemName: "ellipsis")
-                }
+            MovieListView(
+                popularMovies: $popularMovieViewModel.popularMovies
+            )
+            .tabItem {
+                Image(systemName: "ellipsis")
+            }
             
             VideoView()
                 .tabItem {
                     Image(systemName: "video.fill")
-                    
                 }
             
             BookmarkView()
                 .tabItem {
                     Image(systemName: "bookmark.fill")
                 }
-            
+        }.task {
+            await popularMovieViewModel.getMovies()
+            print(
+                "The value of the Movie list is: \(popularMovieViewModel.popularMovies)"
+            )
         }
     }
 }
-
 
 struct VideoView: View {
     var body: some View {

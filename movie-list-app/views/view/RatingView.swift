@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct RatingView: View {
-    let rating : Double
-    let maxRating : Int = 5
-    let fromMovieDetail : Bool
+    let rating: Double
+    let maxRating: Int = 5
+    let fromMovieDetail: Bool
     
     var body: some View {
-        let starSize : CGFloat = fromMovieDetail ? 16 : 10
-        HStack{
-            ForEach(1...5, id: \.self){index in
+        let starSize: CGFloat = fromMovieDetail ? 16 : 10
+        HStack {
+            ForEach(1...5, id: \.self) {index in
                 if Double(index) <= rating {
                     Image(systemName: "star.fill")
                         .foregroundColor(.yellow)
@@ -35,6 +35,5 @@ struct RatingView: View {
 }
 
 #Preview {
-    RatingView(rating: 2.0,fromMovieDetail: false)
+    RatingView(rating: 2.0, fromMovieDetail: false)
 }
-

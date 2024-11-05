@@ -11,8 +11,12 @@ struct MovieStatusButton: View {
     let buttonTitle: String
     @State var isButttonClicked: Bool = false
     var body: some View {
-        ZStack{
-            Button(buttonTitle, action: {isButttonClicked = isButttonClicked ? false : true})
+        ZStack {
+            Button(action: {
+                isButttonClicked = isButttonClicked ? false : true
+            }, label: {
+                Text(buttonTitle)
+            })
                 .buttonStyle(.borderedProminent)
                 .tint(isButttonClicked ? .green : .gray)
                 .clipShape(Capsule())
@@ -22,5 +26,5 @@ struct MovieStatusButton: View {
 }
 
 #Preview {
-    MovieStatusButton(buttonTitle: "",isButttonClicked: false)
+    MovieStatusButton(buttonTitle: "", isButttonClicked: false)
 }

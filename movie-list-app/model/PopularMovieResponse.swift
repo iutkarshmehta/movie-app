@@ -7,18 +7,15 @@
 
 import Foundation
 
-struct PopularMovieResponse : Codable{
-    var page : Int
-    var results : [PopularMovie]
-    var total_pages : Int
-    var total_results : Int
+struct PopularMovieResponse: Codable {
+    var page: Int
+    var results: [PopularMovie]
+    var totalPages: Int
+    var totalResults: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case page, results
+        case totalPages = "total_pages"
+        case totalResults = "total_results"
+    }
 }
-
-struct PopularMovie : Codable{
-    var original_title : String
-    var overview : String
-    var vote_average : Double
-    var poster_path : String
-    var release_date : String
-}
-
