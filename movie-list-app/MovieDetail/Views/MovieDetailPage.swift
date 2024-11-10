@@ -18,7 +18,7 @@ struct MovieDetailPage: View {
             ZStack {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 20) {
-                        imageView1
+                        imageView
                         VStack(alignment: .leading, spacing: 20) {
                             Text("\(movie.originalTitle) ( \(year ?? "") )" )
                                 .font(.system(size: 26, weight: .bold))
@@ -45,7 +45,7 @@ struct MovieDetailPage: View {
         }
     }
     
-    @ViewBuilder var imageView1: some View {
+    @ViewBuilder var imageView: some View {
         ZStack(alignment: .topLeading) {
             AsyncImage(url: movie.backDropURL) { image in
                 image
@@ -75,19 +75,6 @@ struct MovieDetailPage: View {
             .padding([.top], 15)
             .padding(.leading, 16)
             .padding(.trailing, 16)
-        }
-    }
-    
-    @ViewBuilder var imageView: some View {
-//        Image("banner")
-//            .resizable()
-//            .scaledToFit()
-        AsyncImage(url: movie.backDropURL) { image in
-            image
-                .resizable()
-                .scaledToFit()
-        } placeholder: {
-            ProgressView()
         }
     }
     

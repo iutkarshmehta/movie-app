@@ -10,11 +10,12 @@ import SwiftUI
 struct MovieListView: View {
     let movieType: [String] = ["Popular", "Coming Soon", "Top Rated"]
     @Binding var popularMovies: [PopularMovie]
+    @ObservedObject var popularMovieVM: PopularMovieVM
     
     let columns = [GridItem(.adaptive(minimum: 150))]
     var body: some View {
         NavigationStack {
-            VStack(spacing: 0) {
+            VStack(alignment: .center, spacing: 0) {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 16) {
                         ForEach(movieType, id: \.self) { type in
@@ -37,6 +38,7 @@ struct MovieListView: View {
         }
     }
     @ViewBuilder var cardView: some View {
+        
         ScrollView {
             LazyVGrid(columns: columns, spacing: 20) {
                 ForEach(popularMovies, id: \.id) { movie in
@@ -72,4 +74,3 @@ struct MovieListView: View {
         .background(Color.black)
     }
 }
-

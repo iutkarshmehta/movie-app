@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MovieHomepage: View {
-    @StateObject var popularMovieViewModel = PopularMovieViewModel()
+    @StateObject var popularMovieVM = PopularMovieVM()
     
     init() {
         let appearance = UITabBarAppearance()
@@ -21,7 +21,8 @@ struct MovieHomepage: View {
     var body: some View {
         TabView {
             MovieListView(
-                popularMovies: $popularMovieViewModel.popularMovies
+                popularMovies: $popularMovieVM.popularMovies,
+                popularMovieVM: popularMovieVM
             )
             .tabItem {
                 Image(systemName: "ellipsis")
@@ -37,10 +38,7 @@ struct MovieHomepage: View {
                     Image(systemName: "bookmark.fill")
                 }
         }.task {
-            await popularMovieViewModel.getMovies()
-            print(
-                "The value of the Movie list is: \(popularMovieViewModel.popularMovies)"
-            )
+            await popularMovieVM.loadPopularMovies()
         }
     }
 }
