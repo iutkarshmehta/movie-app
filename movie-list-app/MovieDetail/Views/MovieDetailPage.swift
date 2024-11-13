@@ -7,34 +7,36 @@
 
 import SwiftUI
 
+enum MovieType: String, CaseIterable {
+    case adventure = "Adventure"
+    case fantasy = "Fantasy"
+    case comedy = "Comedy"
+    case horror = "Horror"
+    case drama = "Drama"
+}
+
 struct MovieDetailPage: View {
-    var movieType: [String] = ["Adventure", "Fantasy", "Comedy", "Horror", "Drama"]
+    let movieTypes: [MovieType] = MovieType.allCases
     @Environment(\.presentationMode)
     var presentationMode
     @State var movie: PopularMovie
+    
     var body: some View {
-        let year = DateTimeHelper().convertToYear(dateString: movie.releaseDate)
+        
         NavigationView {
             ZStack {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 20) {
                         imageView
                         VStack(alignment: .leading, spacing: 20) {
-                            Text("\(movie.originalTitle) ( \(year ?? "") )" )
-                                .font(.system(size: 26, weight: .bold))
-                                .foregroundStyle(.white)
+                            movieTitleView
                             RatingView(
-                                rating: movie.voteAverage / 2,
+                                rating: movie.rating,
                                 fromMovieDetail: true
                             )
-                                .padding(.bottom, 12)
+                            .padding(.bottom, 12)
                             buttonScrollView
-                            Text("Storyline")
-                                .font(.system(size: 26))
-                                .foregroundStyle(.white)
-                            Text(movie.overview)
-                                .font(.system(size: 20))
-                                .foregroundStyle(.white)
+                            movieOverviewView
                         }
                         .padding([.leading, .trailing], 16)
                     }
@@ -43,6 +45,23 @@ struct MovieDetailPage: View {
                 .background(Color.black)
             }
         }
+    }
+    
+    @ViewBuilder var movieTitleView: some View {
+        // let year = DateTimeHelper().convertToYear(dateString: movie.releaseDate)
+        // Text("\(movie.originalTitle) ( \(movie.year ?? "") )" )
+        Text("\(movie.originalTitle) ( 2021 )" )
+            .font(.system(size: 26, weight: .bold))
+            .foregroundStyle(.white)
+    }
+    
+    @ViewBuilder var movieOverviewView: some View {
+        Text("Storyline")
+            .font(.system(size: 26))
+            .foregroundStyle(.white)
+        Text(movie.overview)
+            .font(.system(size: 20))
+            .foregroundStyle(.white)
     }
     
     @ViewBuilder var imageView: some View {
@@ -81,9 +100,9 @@ struct MovieDetailPage: View {
     @ViewBuilder var buttonScrollView: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(alignment: .top) {
-                ForEach(movieType, id: \.self) {type in
+                ForEach(movieTypes, id: \.self) {type in
                     MovieStatusButton(
-                        buttonTitle: type.description,
+                        buttonTitle: type.rawValue,
                         isButttonClicked: false
                     )
                 }
@@ -92,15 +111,15 @@ struct MovieDetailPage: View {
     }
 }
 
-// #Preview {
-//    MovieDetailPage(
-//        movie: PopularMovie(
-//            originalTitle: "",
-//            overview: "",
-//            voteAverage: 1.2,
-//            posterPath: "",
-//            releaseDate: "",
-//            id: 121
-//        )
-//    )
-// }
+#Preview {
+    MovieDetailPage(
+        movie: PopularMovie(
+            originalTitle: "The Batman",
+            overview: "",
+            voteAverage: 1.2,
+            posterPath: "",
+            releaseDate: "",
+            id: 121
+        )
+    )
+}

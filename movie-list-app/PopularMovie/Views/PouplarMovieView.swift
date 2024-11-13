@@ -1,26 +1,17 @@
 import SwiftUI
 
-struct MovieHomepage: View {
-    @StateObject var popularMovieVM = PopularMovieVM()
+struct PouplarMovieView: View {
+    @StateObject private var popularMovieVM = PopularMovieViewModel(
+        movieService: MovieService(networkService: NetworkService())
+    )
     
     init() {
-        let appearance = UITabBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor.black
-        appearance.stackedLayoutAppearance.normal.iconColor = UIColor.darkGray
-        appearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
-        appearance.stackedLayoutAppearance.selected.iconColor = UIColor.darkGray
-        appearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.white]
-        
-        UITabBar.appearance().standardAppearance = appearance
-        if #available(iOS 15.0, *) {
-            UITabBar.appearance().scrollEdgeAppearance = appearance
-        }
+        UITabBar.appearance().barTintColor = UIColor.black
     }
     
     var body: some View {
         TabView {
-            MovieListView(
+            PopularMovieListView(
                 popularMovies: $popularMovieVM.popularMovies,
                 popularMovieVM: popularMovieVM
             )
@@ -40,6 +31,8 @@ struct MovieHomepage: View {
         }.task {
             await popularMovieVM.loadPopularMovies()
         }
+        .tint(.green)
+        .background(Color.yellow)
     }
 }
 
@@ -56,5 +49,5 @@ struct BookmarkView: View {
 }
 
 #Preview {
-    MovieHomepage()
+    PouplarMovieView()
 }
