@@ -12,15 +12,23 @@ protocol NetworkServiceProtocol {
 }
 
 struct NetworkService: NetworkServiceProtocol {
+    private let session: URLSessionProtocol
+    
+    init(session: URLSessionProtocol = URLSession.shared) {
+        self.session = session
+    }
+    
     func performRequest<T: Decodable>(for endPoint: Endpoint, responseType: T.Type) async -> Result<T, RequestError> {
+        
         guard let url = endPoint.url else {
             return .failure(.invalidURL)
         }
+        
         var request = URLRequest(url: url)
         request.httpMethod = endPoint.method
         
         do {
-            let (data, response) = try await URLSession.shared.data(
+            let (data, response) = try await session.data(
                 for: request
             )
             
