@@ -48,9 +48,7 @@ struct MovieDetailPage: View {
     }
     
     @ViewBuilder var movieTitleView: some View {
-        // let year = DateTimeHelper().convertToYear(dateString: movie.releaseDate)
-        // Text("\(movie.originalTitle) ( \(movie.year ?? "") )" )
-        Text("\(movie.originalTitle) ( 2021 )" )
+         Text("\(movie.originalTitle) ( \(movie.year) )" )
             .font(.system(size: 26, weight: .bold))
             .foregroundStyle(.white)
     }
@@ -72,6 +70,7 @@ struct MovieDetailPage: View {
                     .scaledToFit()
             } placeholder: {
                 ProgressView()
+                    .frame(alignment: .center)
             }
             HStack {
                 Button(action: {

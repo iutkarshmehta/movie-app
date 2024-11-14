@@ -39,16 +39,16 @@ struct PopularMovie: Codable, Hashable {
         return voteAverage / 2
     }
     
-    var year: String? {
-        return Date.toYear(from: releaseDate) ?? nil
+    var year: String {
+        return releaseDate.toYear()
     }
 }
 
-extension Date {
-    static func toYear(from dateString: String, with format: String = "dd-MM-yyyy") -> String? {
+extension String {
+    func toYear() -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = format
-        guard let date = dateFormatter.date(from: dateString) else { return nil }
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        guard let date = dateFormatter.date(from: self) else { return "" }
         dateFormatter.dateFormat = "yyyy"
         return dateFormatter.string(from: date)
     }

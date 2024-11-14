@@ -45,7 +45,7 @@ struct CardView: View {
             .font(.system(size: 14, weight: .bold))
             .foregroundStyle(Color.white)
             .multilineTextAlignment(.leading)
-        Text(movie.releaseDate)
+        Text("(\(movie.year))")
             .font(.system(size: 14, weight: .bold))
             .foregroundStyle(Color.white)
             .multilineTextAlignment(.leading)

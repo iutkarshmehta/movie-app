@@ -7,6 +7,7 @@ struct PouplarMovieView: View {
     
     init() {
         UITabBar.appearance().barTintColor = UIColor.black
+        UITabBar.appearance().backgroundColor = UIColor.black
     }
     
     var body: some View {
