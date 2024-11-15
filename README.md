@@ -1,9 +1,7 @@
 This is a movie application made in swiftUi
 
 
-
-![Simulator Screenshot - iPhone 16 - 2024-11-05 at 19 19 59](https://github.com/user-attachments/assets/ffdaa9c6-5384-49dd-8337-d325ee8eb058)
-
+![Simulator Screenshot - iPhone 16 - 2024-11-16 at 00 00 38](https://github.com/user-attachments/assets/12e3bdb0-e17f-42a3-bd0b-06a44a55b32d)
 
 
-![Simulator Screenshot - iPhone 16 - 2024-11-05 at 19 20 52](https://github.com/user-attachments/assets/f9cc4808-9690-4b1a-9f27-9cad2fe928dc)
+![Simulator Screenshot - iPhone 16 - 2024-11-16 at 00 01 06](https://github.com/user-attachments/assets/34a91f57-d37c-4a32-8977-a723e47f0b7e)
