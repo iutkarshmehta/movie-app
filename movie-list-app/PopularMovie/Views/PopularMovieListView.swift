@@ -44,7 +44,7 @@ struct PopularMovieListView: View {
         }
     }
     
-    @ViewBuilder var cardView: some View {
+    var cardView: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 20) {
                 ForEach(popularMovies, id: \.id) { movie in
@@ -89,7 +89,7 @@ struct PopularMovieListView: View {
                 PopularMovie(
                     originalTitle: "The Batman",
                     overview: "BAtman movie was made by the Marvel studios",
-                    voteAverage: 1.2,
+                    voteAverage: 5.5,
                     releaseDate: "2024",
                     id: 121
                 )

@@ -17,10 +17,10 @@ struct MovieStatusButton: View {
             }, label: {
                 Text(buttonTitle)
             })
-                .buttonStyle(.borderedProminent)
-                .tint(isButttonClicked ? .green : .gray)
-                .clipShape(Capsule())
-                .fontWeight(.bold)
+            .buttonStyle(.borderedProminent)
+            .tint(isButttonClicked ? .green : .gray)
+            .clipShape(Capsule())
+            .fontWeight(.bold)
         }
     }
 }

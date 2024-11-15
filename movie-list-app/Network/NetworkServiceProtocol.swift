@@ -31,7 +31,7 @@ struct NetworkService: NetworkServiceProtocol {
             let (data, response) = try await session.data(
                 for: request
             )
-            
+            /// check theowable methoda s=as well
             guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
                 return .failure(.unexpectedStatusCode)
             }

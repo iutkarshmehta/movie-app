@@ -46,6 +46,7 @@ struct PopularMovie: Codable, Hashable {
 
 extension String {
     func toYear() -> String {
+        ///  check for static method for date formatter
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         guard let date = dateFormatter.date(from: self) else { return "" }

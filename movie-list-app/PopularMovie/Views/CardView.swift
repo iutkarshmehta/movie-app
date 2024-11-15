@@ -21,13 +21,13 @@ struct CardView: View {
             .frame(minWidth: 150, alignment: .leading)
             .background(Color.black.opacity(0.9))
         }
-        .background(Color.blue)
+        .background(Color.black)
         .cornerRadius(15)
         .frame(width: 150, height: 200)
         .shadow(radius: 8)
     }
     
-    @ViewBuilder var imageView: some View {
+    var imageView: some View {
         AsyncImage(url: movie.posterURL) { image in
             image
                 .resizable()
@@ -40,18 +40,20 @@ struct CardView: View {
         }
     }
     
-    @ViewBuilder var titleView: some View {
-        Text(movie.originalTitle)
-            .font(.system(size: 14, weight: .bold))
-            .foregroundStyle(Color.white)
-            .multilineTextAlignment(.leading)
-        Text("(\(movie.year))")
-            .font(.system(size: 14, weight: .bold))
-            .foregroundStyle(Color.white)
-            .multilineTextAlignment(.leading)
+    var titleView: some View {
+        VStack {
+            Text(movie.originalTitle)
+                .font(.system(size: 14, weight: .bold))
+                .foregroundStyle(Color.white)
+                .multilineTextAlignment(.leading)
+            Text("(\(movie.year))")
+                .font(.system(size: 14, weight: .bold))
+                .foregroundStyle(Color.white)
+                .multilineTextAlignment(.leading)
+        }
     }
     
-    @ViewBuilder var movieOverviewView: some View {
+    var movieOverviewView: some View {
         Text(movie.overview)
             .lineLimit(3)
             .truncationMode(.tail)

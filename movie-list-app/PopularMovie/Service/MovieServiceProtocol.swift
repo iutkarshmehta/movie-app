@@ -24,3 +24,5 @@ struct MovieService: MovieServiceProtocol {
             .performRequest(for: endpoint, responseType: PopularMovieResponse.self)
     }
 }
+
+/// create fumcton throwable
